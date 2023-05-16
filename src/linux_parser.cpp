@@ -94,8 +94,8 @@ vector<int> LinuxParser::Pids() {
 }
 
 float LinuxParser::MemoryUtilization() { 
-  auto mem_total_linestream = GetLineStream(kProcDirectory + kMeminfoFilename, "MemTotal:");
-  auto mem_free_linestream = GetLineStream(kProcDirectory + kMeminfoFilename, "MemFree:");
+  auto mem_total_linestream = GetLineStream(kProcDirectory + kMeminfoFilename, kMeminfoMemTotalLabel);
+  auto mem_free_linestream = GetLineStream(kProcDirectory + kMeminfoFilename, kMeminfoMemFreeLabel);
 
   string mem_total_word, mem_total_value, mem_free_word, mem_free_value;
 
@@ -146,7 +146,7 @@ float LinuxParser::CpuUtilization(int pid){
 }
 
 int LinuxParser::TotalProcesses() { 
-  auto linestream = GetLineStream(kProcDirectory + kStatFilename, "processes");
+  auto linestream = GetLineStream(kProcDirectory + kStatFilename, kStatProcessesLabel);
 
   string processes_word, processes_value;
 
@@ -156,7 +156,7 @@ int LinuxParser::TotalProcesses() {
 }
 
 int LinuxParser::RunningProcesses() { 
-  auto linestream = GetLineStream(kProcDirectory + kStatFilename, "procs_running");
+  auto linestream = GetLineStream(kProcDirectory + kStatFilename, kStatProcsRunningLabel);
 
   string procs_running_word, procs_running_value;
 
@@ -182,7 +182,7 @@ string LinuxParser::Command(int pid) {
 }
 
 string LinuxParser::Ram(int pid) { 
-  auto linestream = GetLineStream(kProcDirectory + to_string(pid) + kStatusFilename, "VmSize:");
+  auto linestream = GetLineStream(kProcDirectory + to_string(pid) + kStatusFilename, kStatusRamLabel);
   string ram_word, ram_value;
 
   linestream >> ram_word >> ram_value;
@@ -191,7 +191,7 @@ string LinuxParser::Ram(int pid) {
 }
 
 string LinuxParser::Uid(int pid) { 
-  auto linestream = GetLineStream(kProcDirectory + to_string(pid) + kStatFilename, "Uid:");
+  auto linestream = GetLineStream(kProcDirectory + to_string(pid) + kStatFilename, kStatUidLabel);
 
   string uid_word, uid_value;
 

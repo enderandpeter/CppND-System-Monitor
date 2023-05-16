@@ -19,6 +19,13 @@ const std::string kVersionFilename{"/version"};
 const std::string kOSPath{"/etc/os-release"};
 const std::string kPasswordPath{"/etc/passwd"};
 
+const std::string kMeminfoMemTotalLabel("MemTotal:");
+const std::string kMeminfoMemFreeLabel("MemFree:");
+const std::string kStatProcessesLabel("processes");
+const std::string kStatProcsRunningLabel("procs_running");
+const std::string kStatusRamLabel("VmSize");
+const std::string kStatUidLabel("Uid:");
+
 // System
 float MemoryUtilization();
 long UpTime();

@@ -23,7 +23,7 @@ string Process::Ram() { return LinuxParser::Ram(pid_); }
 
 string Process::User() { return LinuxParser::User(pid_); }
 
-long int Process::UpTime() { return LinuxParser::UpTime(pid_); }
+long int Process::UpTime() { return LinuxParser::UpTime() - LinuxParser::UpTime(pid_); }
 
 // Sort in descending order
 bool Process::operator<(Process const& a) const { 
